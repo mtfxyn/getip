@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Record IP Address</title>
+</head>
+<body>
+    <h1>Visitor IP Address</h1>
+    <p id="ip-address">Loading...</p>
+
+    <script>
+        fetch('/get-ip')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('ip-address').innerText = `Your IP Address: ${data.ip}`;
+            })
+            .catch(error => {
+                console.error('Error fetching IP address:', error);
+                document.getElementById('ip-address').innerText = 'Error fetching IP address';
+            });
+    </script>
+</body>
+</html>
